@@ -1,0 +1,119 @@
+<style>
+  /* First div wrapping the sections */
+  .block-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+div#minicart-content-wrapper {
+  height: 100%;
+}
+/* 3nd Wrapper */
+.minicart-wrapper.active .block-minicart {
+    display: block;
+    /* height: calc(100% - 43px); /* -43 to prevent overlap with the Give Feedback button */
+    height: 100%;
+    right: 0px;
+    top: 0;
+    padding: 0;
+    margin-top: -1px;
+    overflow: hidden;
+}
+/* 4rd wrapper */
+.ui-dialog.ui-widget.ui-widget-content.ui-corner-all.ui-front.mage-dropdown-dialog {
+    height: 100vh;
+    position: fixed;
+    right: 0px;
+    width: 420px;
+    max-width: 100%;
+    top: 0px;
+}
+/* Cart section header */
+.block-minicart .items-total {
+    flex-shrink: 0;
+    background: #cf4501;
+    margin: 0;
+    padding: 20px 15px;
+    color: #fff;
+}
+/* Cart section with the items in cart */
+.minicart-items-wrapper {
+  flex: 1 0 auto;
+  padding: 15px;
+}
+/* Cart section showing estimated total */
+.block-minicart .subtotal {
+  flex-shrink: 0;
+  width: 100%;
+  padding: 15px;
+  box-sizing: border-box;
+  margin-left: 0;
+}
+/* Cart section with the buttons */
+.block-minicart .block-content>.actions {
+  flex-shrink: 0;
+  bottom: 0px !important;
+  width: 100%;
+  padding: 15px;
+  box-sizing: border-box;
+  margin-left: 0;
+}
+
+/* Product name in cart */
+.minicart-items .product-item-name a {
+    color: #000 !important;
+    text-transform: uppercase;
+}
+  
+/* Center the empty cart message */
+.block-minicart .subtitle.empty {
+    margin: auto;
+}
+
+/* Cart buttons wrapper */
+.block-minicart .block-content>.actions {
+    /* Flip the order of the buttons in cart */
+    display: flex;
+    flex-direction: column;
+
+    /* Make room below the cart buttons for the Give Feedback button */
+    padding-bottom: 50px !important;
+    
+    /* Set background white */
+    background: #fff;
+}
+.block-minicart .block-content > .actions > .primary {
+    order: 1;
+    margin-top: 0;
+}
+.block-minicart .block-content > .actions > .secondary {
+    order: 2;
+    margin-top: 20px;
+}
+.product.actions {
+    display: flex;
+    flex-direction: column;
+    right: 0 !important;
+}
+
+</style>
+
+<script defer>
+    const cartItemsTotalDiv = document.querySelector('#minicart-content-wrapper');
+    const cartCloseIcon = document.createElement('i');
+    cartCloseIcon.style.fontStyle = 'normal';
+    cartCloseIcon.style.color = '#bbb';
+    cartCloseIcon.style.cursor = 'pointer';
+    cartCloseIcon.style.position = 'absolute';
+    cartCloseIcon.style.top = '12px';
+    cartCloseIcon.style.right = '12px';
+    cartCloseIcon.style.fontSize = '21px';
+    cartCloseIcon.textContent = '✕';
+
+    cartCloseIcon.onclick = function() {
+        console.log('cartCloseIcon clicked');
+        document.querySelector('.footer-copyrights').click()
+    };
+
+    cartItemsTotalDiv.appendChild(cartCloseIcon);
+</script>
