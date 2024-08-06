@@ -1,0 +1,19 @@
+<script defer>
+    const cartItemsTotalDiv = document.querySelector('#minicart-content-wrapper');
+    const cartCloseIcon = document.createElement('i');
+    cartCloseIcon.style.fontStyle = 'normal';
+    cartCloseIcon.style.color = '#bbb';
+    cartCloseIcon.style.cursor = 'pointer';
+    cartCloseIcon.style.position = 'absolute';
+    cartCloseIcon.style.top = '12px';
+    cartCloseIcon.style.right = '12px';
+    cartCloseIcon.style.fontSize = '21px';
+    cartCloseIcon.textContent = '✕';
+
+    cartCloseIcon.onclick = function() {
+        console.log('cartCloseIcon clicked');
+        document.querySelector('.footer-copyrights').click()
+    };
+
+    cartItemsTotalDiv.appendChild(cartCloseIcon);
+</script>

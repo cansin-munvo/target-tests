@@ -1,0 +1,73 @@
+<script defer>
+window.onload = function() {
+    // Create the background overlay
+    const cartOpenOverlay = document.createElement('div');
+    cartOpenOverlay.id = 'cartOpenOverlay';
+    cartOpenOverlay.style.position = 'fixed';
+    cartOpenOverlay.style.top = '0';
+    cartOpenOverlay.style.left = '0';
+    cartOpenOverlay.style.width = '100vw';
+    cartOpenOverlay.style.height = '100vh';
+    cartOpenOverlay.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+    cartOpenOverlay.style.zIndex = '11';
+    cartOpenOverlay.style.display = 'none';
+
+    // Insert the background overlay into the body
+    document.body.appendChild(cartOpenOverlay);
+
+    // Select the cart wrapper
+    const cartWrapper = document.querySelector('.minicart-wrapper .ui-dialog');
+
+    // Hide the cart by default
+    cartWrapper.style.right = '-100%';
+    cartWrapper.style.transition = 'right 0.5s ease-in-out';
+
+    // Helper function to check if the cart is open
+    function isCartOpen (classList) {
+        if (classList.contains('active')) {
+            return true;
+        }
+        return false;
+    };
+    
+    function doCartOpenedActions() {
+        console.log('Cart opened actions');
+        // Show the background overlay
+        cartOpenOverlay.style.display = 'block';
+        
+        // Do the sliding in animation
+        cartWrapper.style.right = '0px';
+    }
+    
+    function doCartClosedActions() {
+        console.log('Cart closed actions');
+        
+        // Hide the background overlay
+        cartOpenOverlay.style.display = 'none';
+
+        // Do the sliding out animation
+        cartWrapper.style.right = '-100%';
+    }
+
+    // Listener for class changes in the cart wrapper
+    const observer = new MutationObserver(function(mutationsList, observer) {
+        for(const mutation of mutationsList) {
+            if (mutation.type === 'attributes' && mutation.attributeName === 'style') {
+                const target = mutation.target;
+                const computedStyle = window.getComputedStyle(target);
+                if (computedStyle.display === 'block') {
+                    doCartOpenedActions();
+                } else {
+                    doCartClosedActions();
+                }
+            }
+        }
+    });
+
+    // Instantiate the listener
+    observer.observe(cartWrapper, { attributes: true });
+
+
+};
+
+</script>

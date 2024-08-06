@@ -1,0 +1,17 @@
+<script defer>
+    // dataLayer[14]['a']['cartNav']['viewProducts']
+
+    // Traverse the dataLayer to look for cart
+    for (let i = 0; i < dataLayer.length; i++) {
+        let exists = dataLayer &&
+             dataLayer[i] &&
+             dataLayer[i].a &&
+             dataLayer[i].a.cartNav &&
+             dataLayer[i].a.cartNav.viewProducts !== undefined;
+        if (exists) {
+            // BUG: sometimes datalayer has multiple elements with cartNav.viewProducts
+            console.log(`index is ${i}`)
+            console.log(dataLayer[i]['a']['cartNav']['viewProducts']);
+        }
+    }
+</script>
